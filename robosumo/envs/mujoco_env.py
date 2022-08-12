@@ -101,10 +101,12 @@ class MujocoEnv(gym.Env):
 
     # ------------------------------------------------------------------------
 
-    def _reset(self):
+    def reset(self):
         self.sim.reset()
         self.sim.forward()
         ob = self.reset_model()
+        if ob is None: # zihan: added, fix None observation at reset()
+            ob = tuple([np.zeros(self.obs_dim) for _ in self.agents])
         return ob
 
     def set_state(self, qpos, qvel):
