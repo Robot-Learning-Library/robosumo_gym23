@@ -58,7 +58,7 @@ class SumoEnv(MujocoEnv, EzPickle):
         self._init_vel_noise = init_vel_noise
         self._n_agents = len(agent_names)
         self._mujoco_init = False
-        self._num_steps = None
+        self._num_steps = 0
         self._spec = None
 
         # Resolve agent scopes
@@ -117,7 +117,7 @@ class SumoEnv(MujocoEnv, EzPickle):
         a = np.concatenate(actions, axis=0)
         self.do_simulation(a, self.frame_skip)
 
-    def _step(self, actions):
+    def step(self, actions):
         if not self._mujoco_init:
             return self._get_obs(), 0, False, None
 
@@ -270,3 +270,6 @@ class SumoEnv(MujocoEnv, EzPickle):
             self.sim._render_context_offscreen.cam.distance = \
                 self.model.stat.extent * 1.0
         self.buffer_size = (1280, 800)
+
+    def render(self, mode='human'):
+        super(SumoEnv, self).render(mode=mode) # just raise an exception
