@@ -1,4 +1,4 @@
-**Status:** Archive (code is provided as-is, no updates expected)
+**Description:** This is a modified version of [robosumo](https://github.com/openai/robosumo). The original version only supports `gym==0.16`, this version supports the newest version of `gym==0.23.1`, it also works with `render(mode='human')` for visualization and RecordVideo wrapper with `render(mode='rgb_array')`.
 
 RoboSumo
 ========
