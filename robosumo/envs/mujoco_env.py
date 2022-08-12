@@ -130,7 +130,7 @@ class MujocoEnv(gym.Env):
         for _ in range(n_frames):
             self.sim.step()
 
-    def render(self, mode='human', close=True):
+    def render(self, mode='human', close=False):
         if close:
             if self.viewer is not None:
                 self.viewer = None
@@ -140,7 +140,7 @@ class MujocoEnv(gym.Env):
             self.viewer_setup()
             return _read_pixels(self.sim, *self.buffer_size)
         elif mode == 'human':
-            self._get_viewer().render()
+            return self._get_viewer().render()
 
     def _get_viewer(self, mode='human'):
         if self.viewer is None and mode == 'human':

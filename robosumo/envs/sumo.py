@@ -272,4 +272,4 @@ class SumoEnv(MujocoEnv, EzPickle):
         self.buffer_size = (1280, 800)
 
     def render(self, mode='human'):
-        super(SumoEnv, self).render(mode=mode) # just raise an exception
+        return super(SumoEnv, self).render(mode=mode) # just raise an exception
